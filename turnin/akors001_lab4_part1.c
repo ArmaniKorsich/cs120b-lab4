@@ -12,7 +12,7 @@
 #include "simAVRHeader.h"
 #endif
 
-enum SM_States { SM_Start, SM_1, SM_2} state;
+enum SM_States { SM_Start, SM_1, SM_12, SM_2, SM_21} state;
 
 void TickFct() {
 
@@ -22,18 +22,18 @@ void TickFct() {
 			break;
 		case SM_1:
 			if ((PINA & 0x01) == 0x01) {
-				state = SM_2;
+				state = SM_12;
 			} else {
 				state = SM_1;
 			}
 			break;
-		/*case SM_12:
+		case SM_12:
 			if ((PINA & 0x01) == 0x01) {
 				state = SM_12;
 			} else { //when they let it go
 				state = SM_2;
 			}
-			break;*/
+			break;
 		case SM_2:
 			if ((PINA & 0x01) == 0x01) {
 				state = SM_1;
@@ -41,13 +41,13 @@ void TickFct() {
 				state = SM_2;
 			} 
 			break;
-		/*case SM_21:
+		case SM_21:
 			if ((PINA & 0x01) == 0x01) {
 				state = SM_21;
 			} else {
 				state = SM_1;
 			}
-			break;*/
+			break;
 		default:
 			state = SM_Start;	
 			break;
@@ -55,12 +55,15 @@ void TickFct() {
 	}
 	
 	switch (state) {
+		case SM_12:
 		case SM_1:
 			PORTB = ((PORTB & 0xFC) | 0x01);
 			break;
+		case SM_21:
 		case SM_2:
 			PORTB = ((PORTB & 0xFC) | 0x02);
 			break;
+	
 		default:
 			break;
 	}
