@@ -55,11 +55,11 @@ void TickFct() {
 	}
 	
 	switch (state) {
-		case SM_12:
+		case SM_21:
 		case SM_1:
 			PORTB = ((PORTB & 0xFC) | 0x01);
 			break;
-		case SM_21:
+		case SM_12:
 		case SM_2:
 			PORTB = ((PORTB & 0xFC) | 0x02);
 			break;
