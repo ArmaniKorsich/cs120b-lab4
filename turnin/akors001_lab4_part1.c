@@ -36,7 +36,7 @@ void TickFct() {
 			break;
 		case SM_2:
 			if ((PINA & 0x01) == 0x01) {
-				state = SM_1;
+				state = SM_21;
 			} else {
 				state = SM_2;
 			} 
@@ -55,11 +55,11 @@ void TickFct() {
 	}
 	
 	switch (state) {
-		case SM_12:
+		case SM_21:
 		case SM_1:
 			PORTB = ((PORTB & 0xFC) | 0x01);
 			break;
-		case SM_21:
+		case SM_12:
 		case SM_2:
 			PORTB = ((PORTB & 0xFC) | 0x02);
 			break;
