@@ -36,7 +36,7 @@ void TickFct() {
 			break;
 		case SM_2:
 			if ((PINA & 0x01) == 0x01) {
-				state = SM_1;
+				state = SM_21;
 			} else {
 				state = SM_2;
 			} 
