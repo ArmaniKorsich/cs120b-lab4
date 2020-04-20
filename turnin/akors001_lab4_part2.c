@@ -23,47 +23,59 @@ void TickFct() {
 				state = inc;
 			} else if ((PINA & 0x03) == 0x02) {
 				state = dec;
-			} else if ((PINA & 0x03) == 0x03 {
-				PORTC = 0x00;
 			}
 			break;
 		case incpause:
-			if ((PINA & 0x03) == 0x03) {
-				PORTC = 0x00;
-				state = SM_Start;
-			} else if ((PINA & 0x01) == 0x01) {
+			if ((PINA & 0x01) == 0x01) {
 				state = incpause;
 			} else {
 				state = SM_Start;
 			}
 			break;
 		case decpause:
-			if ((PINA & 0x03) == 0x03) {
-				PORTC = 0x00;
-				state = SM_Start;
-			} else if ((PINA & 0x03) == 0x02) {
+			if ((PINA & 0x03) == 0x02) {
 				state = decpause;
 			} else { //when they let it go
 				state = SM_Start;
 			}
 			break;
 		case inc:
-			if (PORTC < 0x09) {
-				PORTC = PORTC + 1;
-			}
 			state = incpause;
 			break;
 		case dec:
-			if (PORTC >  0x00) {
-				PORTC = PORTC - 1;
-			}
 			state = decpause;
 			break;
 		default:
-			PORTC = 0x07;
 			state = SM_Start;	
 			break;
 
+	}
+
+	switch(state) {
+		case SM_Start:
+			if ((PINA & 0x03) == 0x03) {
+				PORTC = 0x00;
+			}
+			break;
+		case inc:
+			if (PORTC < 0x09) {
+				PORTC = PORTC + 1;
+			}
+			break;
+		case dec:
+			if (PORTC > 0x00) {
+				PORTC = PORTC - 1;
+			}
+	
+		case incpause:
+		case decpause:
+			if ((PINA & 0x03) == 0x03) {
+				PORTC = 0x00;
+			}
+			break;
+		default:
+			PORTC = 0x07;
+			break;
 	}
 	
 }
