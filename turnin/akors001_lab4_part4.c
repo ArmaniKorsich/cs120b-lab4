@@ -59,10 +59,13 @@ void tickFct() {
 		case SM_2:
 			break;
 		case SM_3:
-			if (PORTB == 0x00) {
+			if ((PINA && 0x80) == 0x80) {
+				PORTB = 0x00;
+			}
+			else if (PORTB == 0x00) {
 				PORTB = 0x01;
 			}
-			if (PORTB == 0x01) {
+			else if (PORTB == 0x01) {
 				PORTB = 0x00;
 			}
 			break;
