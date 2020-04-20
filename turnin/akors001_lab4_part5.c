@@ -42,6 +42,7 @@ void tickFct() {
 		case SM_Loop:
 			if ((PINA & 0x80) == 0x80) {
 				PORTB = 0x00;
+				cnt = 0;
 			}
 			if ((PINA & 0x07) == arr[cnt]) {
 				cnt = cnt + 1;
