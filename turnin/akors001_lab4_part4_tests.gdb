@@ -55,7 +55,7 @@ continue 2
 setPINA 0x02
 continue 2
 # Set expect values
-expect state SM_3
+expect state SM_Start
 expectPORTB 0x01
 # Check pass/fail
 checkResult

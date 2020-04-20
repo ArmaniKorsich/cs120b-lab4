@@ -42,11 +42,7 @@ void tickFct() {
 			}
 			break;
 		case SM_3:
-			if ((PINA & 0x80) == 0x80) {
-				state = SM_Start;
-			} else {
-				state = SM_3;
-			}
+			state = SM_Start;
 			break;
 		default:
 			state = SM_Start;
