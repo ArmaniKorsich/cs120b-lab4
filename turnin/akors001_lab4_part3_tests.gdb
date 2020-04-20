@@ -60,19 +60,6 @@ expectPORTB 0x01
 # Check pass/fail
 checkResult
 
-
-test "PINA: 0x04, 0x00, 0x01 => state: SM_Start, PINB: 0x00"
-setPINA 0x04
-continue 2
-setPINA 0x00
-continue 2
-setPINA 0x01
-continue 2
-expect state SM_Start
-expectPORTB 0x00
-checkResult
-# Add tests below
-
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed
 eval "shell echo Passed %d/%d tests.\n",$passed,$tests

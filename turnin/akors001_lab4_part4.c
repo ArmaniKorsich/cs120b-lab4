@@ -57,10 +57,14 @@ void tickFct() {
 		case SM_Start:
 		case SM_1:
 		case SM_2:
-			PORTB = 0x00;
 			break;
 		case SM_3:
-			PORTB = 0x01;
+			if (PORTB == 0x00) {
+				PORTB = 0x01;
+			}
+			if (PORTB == 0x01) {
+				PORTB = 0x00;
+			}
 			break;
 		default:
 			PORTB = 0x00;
